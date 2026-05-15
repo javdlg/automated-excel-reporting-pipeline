@@ -53,7 +53,9 @@ def load_data(data_dict: Dict[str, pd.DataFrame], output_path: str) -> bool:
         logging.error(f"An error occurred while generating the Excel report: {e}")
         return False
 
-def _format_worksheet(ws, sheet_name: str):
+from openpyxl.worksheet.worksheet import Worksheet
+
+def _format_worksheet(ws: Worksheet, sheet_name: str):
     """
     Apply visual formatting to the worksheet based on the sheet type.
     
