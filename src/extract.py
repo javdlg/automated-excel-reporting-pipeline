@@ -20,6 +20,10 @@ def extract_data(file_path: str) -> Optional[pd.DataFrame]:
         # Read the file using pandas
         df = pd.read_csv(file_path)
         
+        # Rename 'Sales' to 'Total' to match the pipeline's expected schema
+        if 'Sales' in df.columns:
+            df.rename(columns={'Sales': 'Total'}, inplace=True)
+            
         # Validate that the required columns for the pipeline exist
         required_columns = ['Branch', 'City', 'Product line', 'Total', 'Rating']
         missing_cols = [col for col in required_columns if col not in df.columns]
